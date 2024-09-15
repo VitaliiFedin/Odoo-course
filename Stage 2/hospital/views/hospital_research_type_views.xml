@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hospital_research_type_action" model="ir.actions.act_window">
+        <field name="name">Research Types</field>
+        <field name="res_model">hospital.research.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="hospital_research_type_view_tree" model="ir.ui.view">
+        <field name="name">hospital.research.type.tree</field>
+        <field name="model">hospital.research.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="parent_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hospital_research_type_view_form" model="ir.ui.view">
+        <field name="name">hospital.research.type.form</field>
+        <field name="model">hospital.research.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="parent_id"/>
+                        <field name="child_ids" widget="one2many_list">
+                            <tree>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

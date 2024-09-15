@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ResearchType(models.Model):
@@ -25,6 +25,7 @@ class Research(models.Model):
     _name = "hospital.research"
     _description = "Research"
 
+    name = fields.Char(string="Research Name", compute="_compute_name", store=True)
     patient_id = fields.Many2one("hospital.patient", string="Patient", required=True)
     research_type_id = fields.Many2one(
         "hospital.research.type", string="Type of research", required=True
@@ -36,3 +37,11 @@ class Research(models.Model):
     conclusions = fields.Text(string="Conclusions")
     visit_id = fields.Many2one("hospital.doctor.visit", string="Visit")
     diagnosis_id = fields.Many2one("hospital.diagnosis", string="Diagnosis")
+
+    @api.depends("patient_id", "research_type_id", "sample_type_id")
+    def _compute_name(self):
+        for record in self:
+            if record.patient_id and record.research_type_id and record.sample_type_id:
+                record.name = f"{record.patient_id.name} - {record.research_type_id.name} - {record.sample_type_id.name}"
+            else:
+                record.name = "New Research"

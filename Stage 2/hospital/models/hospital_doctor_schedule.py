@@ -6,6 +6,7 @@ class DoctorSchedule(models.Model):
     _name = "hospital.doctor.schedule"
     _description = "Doctor Schedule"
 
+    name = fields.Char(string="Doctor Schedule", compute="_compute_name", store=True)
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
     schedule_date = fields.Date(string="Date", required=True)
     start_time = fields.Float(required=True)
@@ -32,3 +33,11 @@ class DoctorSchedule(models.Model):
                 raise ValidationError(
                     "The doctor's schedule overlaps with the existing one."
                 )
+
+    @api.depends("doctor_id", "schedule_date")
+    def _compute_name(self):
+        for record in self:
+            if record.doctor_id and record.schedule_date:
+                record.name = f"{record.doctor_id.name} - {record.schedule_date}"
+            else:
+                record.name = "New Doctor Schedule"

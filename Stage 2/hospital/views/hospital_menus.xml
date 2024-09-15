@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main menu item -->
+    <menuitem
+        id="hospital_menu_root"
+        name="Hospital"
+        sequence="10"/>
+
+    <!-- Patient menu -->
+    <menuitem id="hospital_patient_menu" name="Patients" parent="hospital_menu_root" sequence="10"/>
+    <menuitem id="hospital_patient_menu_list" name="Patient List" parent="hospital_patient_menu" action="hospital_patient_action" sequence="10"/>
+
+    <!-- Doctor Menu -->
+    <menuitem id="hospital_doctor_menu" name="Doctors" parent="hospital_menu_root" sequence="20"/>
+    <menuitem id="hospital_doctor_menu_list" name="Doctor List" parent="hospital_doctor_menu" action="hospital_doctor_action" sequence="10"/>
+
+    <!-- Disease Menu -->
+    <menuitem id="hospital_disease_menu" name="Diseases" parent="hospital_menu_root" sequence="30"/>
+    <menuitem id="hospital_disease_menu_list" name="Disease List" parent="hospital_disease_menu" action="hospital_disease_action" sequence="10"/>
+
+    <!-- Diagnosis Menu -->
+    <menuitem id="hospital_diagnosis_menu" name="Diagnoses" parent="hospital_menu_root" sequence="40"/>
+    <menuitem id="hospital_diagnosis_menu_list" name="Diagnosis List" parent="hospital_diagnosis_menu" action="hospital_diagnosis_action" sequence="10"/>
+
+    <!-- Doctor Visit Menu -->
+    <menuitem id="hospital_doctor_visit_menu" name="Doctor Visits" parent="hospital_menu_root" sequence="50"/>
+    <menuitem id="hospital_doctor_visit_menu_list" name="Visit List" parent="hospital_doctor_visit_menu" action="hospital_doctor_visit_action" sequence="10"/>
+
+    <!-- Doctor History Menu -->
+    <menuitem id="hospital_doctor_history_menu" name="Doctor History" parent="hospital_menu_root" sequence="60"/>
+    <menuitem id="hospital_doctor_history_menu_list" name="History List" parent="hospital_doctor_history_menu" action="hospital_doctor_history_action" sequence="10"/>
+
+    <!-- Research Type Menu -->
+    <menuitem id="hospital_research_type_menu" name="Research Types" parent="hospital_menu_root" sequence="70"/>
+    <menuitem id="hospital_research_type_menu_list" name="Research Type List" parent="hospital_research_type_menu" action="hospital_research_type_action" sequence="10"/>
+
+    <!-- Sample Type Menu -->
+    <menuitem id="hospital_sample_type_menu" name="Sample Types" parent="hospital_menu_root" sequence="80"/>
+    <menuitem id="hospital_sample_type_menu_list" name="Sample Type List" parent="hospital_sample_type_menu" action="hospital_sample_type_action" sequence="10"/>
+
+    <!-- Research Menu -->
+    <menuitem id="hospital_research_menu" name="Research" parent="hospital_menu_root" sequence="90"/>
+    <menuitem id="hospital_research_menu_list" name="Research List" parent="hospital_research_menu" action="hospital_research_action" sequence="10"/>
+
+    <!-- Doctor Schedule Menu -->
+    <menuitem id="hospital_doctor_schedule_menu" name="Doctor Schedules" parent="hospital_menu_root" sequence="100"/>
+    <menuitem id="hospital_doctor_schedule_menu_list" name="Schedule List" parent="hospital_doctor_schedule_menu" action="hospital_doctor_schedule_action" sequence="10"/>
+</odoo>

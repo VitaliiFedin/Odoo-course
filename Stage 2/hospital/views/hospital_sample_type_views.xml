@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hospital_sample_type_action" model="ir.actions.act_window">
+        <field name="name">Sample Types</field>
+        <field name="res_model">hospital.sample.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="hospital_sample_type_view_tree" model="ir.ui.view">
+        <field name="name">hospital.sample.type.tree</field>
+        <field name="model">hospital.sample.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hospital_sample_type_view_form" model="ir.ui.view">
+        <field name="name">hospital.sample.type.form</field>
+        <field name="model">hospital.sample.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
