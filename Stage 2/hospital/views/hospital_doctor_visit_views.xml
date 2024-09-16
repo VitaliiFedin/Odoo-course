@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+    <!-- Doctor Visit Action Window -->
     <record id="hospital_doctor_visit_action" model="ir.actions.act_window">
         <field name="name">Doctor Visits</field>
         <field name="res_model">hospital.doctor.visit</field>
         <field name="view_mode">tree,form</field>
     </record>
 
+    <!-- Doctor Visit Tree View -->
     <record id="hospital_doctor_visit_view_tree" model="ir.ui.view">
         <field name="name">hospital.doctor.visit.tree</field>
         <field name="model">hospital.doctor.visit</field>
@@ -20,6 +21,7 @@
         </field>
     </record>
 
+    <!-- Doctor Visit Form View -->
     <record id="hospital_doctor_visit_view_form" model="ir.ui.view">
         <field name="name">hospital.doctor.visit.form</field>
         <field name="model">hospital.doctor.visit</field>
@@ -42,6 +44,51 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <!-- Reschedule Appointment Wizard Form View -->
+    <record id="reschedule_appointment_wizard_view_form" model="ir.ui.view">
+        <field name="name">hospital.reschedule.appointment.wizard.form</field>
+        <field name="model">hospital.reschedule.appointment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reschedule Appointment">
+                <group>
+                    <field name="new_doctor_id"/>
+                    <field name="new_visit_datetime"/>
+                </group>
+                <footer>
+                    <button string="Apply" name="apply_rescheduling" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Reschedule Appointment Wizard Action -->
+    <record id="action_reschedule_appointment_wizard" model="ir.actions.act_window">
+        <field name="name">Reschedule Appointment</field>
+        <field name="res_model">hospital.reschedule.appointment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="reschedule_appointment_wizard_view_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_hospital_doctor_visit"/>
+        <field name="binding_view_types">list</field>
+        <field name="binding_type">action</field>
+    </record>
+
+    <!-- Extend Doctor Visit Tree View to include Action Button -->
+    <record id="hospital_doctor_visit_view_tree_extend" model="ir.ui.view">
+        <field name="name">hospital.doctor.visit.tree.extend</field>
+        <field name="model">hospital.doctor.visit</field>
+        <field name="inherit_id" ref="hospital_doctor_visit_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <button name="%(action_reschedule_appointment_wizard)d"
+                        string="Reschedule"
+                        type="action"
+                        class="oe_highlight"/>
+            </xpath>
         </field>
     </record>
 </odoo>

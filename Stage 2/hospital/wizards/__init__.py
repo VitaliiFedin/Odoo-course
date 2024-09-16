@@ -1,1 +1,1 @@
-from . import doctor_reassingment_wizard
+from . import doctor_reassingment_wizard, reschedule_appointment_wizard

@@ -11,3 +11,4 @@ access_hospital_sample_type,access_hospital_sample_type,model_hospital_sample_ty
 access_hospital_research,access_hospital_research,model_hospital_research,base.group_user,1,1,1,1
 access_hospital_doctor_schedule,access_hospital_doctor_schedule,model_hospital_doctor_schedule,base.group_user,1,1,1,1
 access_hospital_mass_doctor_reassignment_wizard,access.hospital.mass.doctor.reassignment.wizard,model_hospital_mass_doctor_reassignment_wizard,base.group_user,1,1,1,1
+access_reschedule_appointment_wizard,hospital.reschedule.appointment.wizard,model_hospital_reschedule_appointment_wizard,,1,1,1,0

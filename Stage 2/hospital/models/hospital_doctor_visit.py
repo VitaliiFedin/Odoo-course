@@ -1,5 +1,5 @@
 from odoo import api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class DoctorVisit(models.Model):
@@ -59,3 +59,8 @@ class DoctorVisit(models.Model):
                 record.name = f"{record.patient_id.name} - {record.doctor_id.name} - {record.visit_datetime}"
             else:
                 record.name = "New Doctor Visit"
+
+    def action_reschedule(self):
+        for record in self:
+            if record.visit_completed:
+                raise UserError("You cannot reschedule a completed visit.")
