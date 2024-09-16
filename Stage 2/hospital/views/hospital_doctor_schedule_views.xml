@@ -37,4 +37,53 @@
         </field>
     </record>
 
+    <!-- Weekly Schedule Wizard Form View -->
+    <record id="view_weekly_schedule_wizard_form" model="ir.ui.view">
+        <field name="name">hospital.weekly.schedule.wizard.form</field>
+        <field name="model">hospital.weekly.schedule.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Weekly Schedule">
+                <group>
+                    <field name="week_type"/>
+                    <field name="doctor_schedule_ids">
+                        <tree>
+                            <field name="doctor_id"/>
+                            <field name="schedule_date"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Apply" type="object" name="apply_schedules" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Weekly Schedule Wizard Action -->
+    <record id="action_weekly_schedule_wizard" model="ir.actions.act_window">
+        <field name="name">Weekly Schedule</field>
+        <field name="res_model">hospital.weekly.schedule.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_weekly_schedule_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Extend Doctor Schedule Tree View to include Action Button -->
+    <record id="hospital_doctor_schedule_view_tree_extend" model="ir.ui.view">
+        <field name="name">hospital.doctor.schedule.tree.extend</field>
+        <field name="model">hospital.doctor.schedule</field>
+        <field name="inherit_id" ref="hospital_doctor_schedule_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <button name="%(action_weekly_schedule_wizard)d"
+                        string="Weekly Schedule"
+                        type="action"
+                        class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
