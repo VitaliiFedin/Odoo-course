@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard Form View -->
+    <record id="mass_doctor_reassignment_wizard_view_form" model="ir.ui.view">
+        <field name="name">hospital.mass.doctor.reassignment.wizard.form</field>
+        <field name="model">hospital.mass.doctor.reassignment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mass Doctor Reassignment">
+                <group>
+                    <field name="new_doctor_id"/>
+                </group>
+                <footer>
+                    <button string="Apply" type="object" name="apply_reassignment" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open the Wizard -->
+    <record id="action_mass_doctor_reassignment_wizard" model="ir.actions.act_window">
+        <field name="name">Mass Doctor Reassignment</field>
+        <field name="res_model">hospital.mass.doctor.reassignment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="mass_doctor_reassignment_wizard_view_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <!-- Extend the Patient List View to include the action button in the header -->
+    <record id="hospital_patient_view_tree_extend" model="ir.ui.view">
+        <field name="name">hospital.patient.tree.extend</field>
+        <field name="model">hospital.patient</field>
+        <field name="inherit_id" ref="hospital.hospital_patient_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <header>
+                    <button name="%(action_mass_doctor_reassignment_wizard)d" 
+                            string="Reassign Doctor" 
+                            type="action" 
+                            class="oe_highlight"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+</odoo>
